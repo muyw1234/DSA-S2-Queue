@@ -56,7 +56,7 @@ public class Main {
 
         System.out.println("Ara fem una cua de cadena de caracters");
         try {
-            Queue<String> q2 = new QueueImpl<String>(5);
+            Queue<String> q2 = new QueueImpl<>(5);
             q2.push("HOLA");
             System.out.println(q.size());
             q2.push("DSA");

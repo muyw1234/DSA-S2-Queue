@@ -1,38 +1,46 @@
-public class QueueImpl<E> implements Queue<E>{
+public class QueueImpl<E> implements Queue<E> {
     private E[] data;
-    private int p;
+    private int p; // número d'elements actuals a la cua
 
+    @SuppressWarnings("unchecked")
     public QueueImpl(int len) {
-        // TO-DO
-        this.data = (E[])new Object[len];
+        if (len <= 0) throw new IllegalArgumentException("La capacitat ha de ser > 0");
+        this.data = (E[]) new Object[len];
+        this.p = 0;
     }
 
+    @Override
     public void push(E e) throws FullQueueException {
-        // TO-DO
-        if (isFull()) throw new FullQueueException();
-
-        this.data[this.p++]=e;
-
+        if (isFull()) {
+            throw new FullQueueException();
+        }
+        data[p++] = e;
     }
 
-
+    @Override
     public E pop() throws EmptyQueueException {
-        // TO-DO
-        return null;
+        if (isEmpty()) {
+            throw new EmptyQueueException();
+        }
+        E first = data[0];
+        // desplaçar tots els elements cap a l'esquerra
+        for (int i = 1; i < p; i++) {
+            data[i - 1] = data[i];
+        }
+        data[--p] = null; // neteja i decrementa la mida
+        return first;
     }
 
     private boolean isFull() {
-        // TO-DO
-        return false;
+        return p == data.length;
     }
 
     private boolean isEmpty() {
-        // TO-DO
-        return false;
+        return p == 0;
     }
 
+    @Override
     public int size() {
-        //TO-DO
-        return this.p;
+        return p;
     }
 }
