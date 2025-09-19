@@ -1,15 +1,83 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+
+    public static void main(String[] args) {
+        Queue<Integer> q = new QueueImpl<Integer>(5);
+        try {
+            q.push(1);
+            System.out.println(q.size());
+            q.push(2);
+            System.out.println(q.size());
+            q.push(3);
+            System.out.println(q.size());
+            q.push(4);
+            System.out.println(q.size());
+            q.push(5);
+            System.out.println(q.size());
+            q.push(6);
+
+        } catch (FullQueueException fullExp) {
+            //
+            System.out.println("EXCEPCIÓ!!");
+            fullExp.printStackTrace();
         }
+
+        System.out.println("Inicialitzem la cua, afegim 3 elements i els desencolem!!!");
+
+        try {
+            q = new QueueImpl<Integer>(5);
+            q.push(1);
+            System.out.println(q.size());
+            q.push(2);
+            System.out.println(q.size());
+            q.push(3);
+            System.out.println(q.size());
+
+            int v;
+            while (q.size() > 0) {
+                v = q.pop();
+                System.out.println(v);
+            }
+
+            q.pop();
+        }
+        catch (FullQueueException fullExc) {
+            System.out.println("EXCEPCIÓ FULL!!!");
+            fullExc.printStackTrace();
+        }
+        catch (EmptyQueueException emptyExc) {
+            System.out.println("EXCEPCIÓ EMPTY!!!!!");
+            emptyExc.printStackTrace();
+        }
+
+
+        System.out.println("Ara fem una cua de cadena de caracters");
+        try {
+            Queue<String> q2 = new QueueImpl<String>(5);
+            q2.push("HOLA");
+            System.out.println(q.size());
+            q2.push("DSA");
+            System.out.println(q.size());
+            q2.push("MOLA!!!");
+            System.out.println(q.size());
+
+            String s;
+            while (q2.size() > 0) {
+                s = q2.pop();
+                System.out.println(s);
+            }
+        }
+        catch (FullQueueException fullExc) {
+            System.out.println("EXCEPCIÓ FULL!!!");
+            fullExc.printStackTrace();
+        }
+        catch (EmptyQueueException emptyExc) {
+            System.out.println("EXCEPCIÓ EMPTY!!!!!");
+            emptyExc.printStackTrace();
+        }
+
     }
 }
