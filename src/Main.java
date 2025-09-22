@@ -21,7 +21,7 @@ public class Main {
 
         } catch (FullQueueException fullExp) {
             //
-            System.out.println("EXCEPCIÓ!!");
+            System.out.println("EXCEPCIÓ FULL!!");
             fullExp.printStackTrace();
         }
 
