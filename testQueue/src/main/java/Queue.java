@@ -1,4 +1,3 @@
-
 /**
  * Interfície genèrica que defineix les operacions bàsiques d'una cua (queue),
  * estructura de dades que segueix la política FIFO (First In, First Out).

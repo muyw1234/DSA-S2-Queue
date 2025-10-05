@@ -1,5 +1,4 @@
-
-public class QueueImpl<E> implements Queue<E>{
+public class QueueImpl<E> implements Queue<E> {
     private E[] data;
     private int p;
 
